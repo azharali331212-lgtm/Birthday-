@@ -148,7 +148,8 @@
   </div>
 
   <!-- Audio Element -->
-  <audio id="bg-music" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=happy-birthday-113002.mp3"></audio>
+  <audio id="bg-music" loop autoplay src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=happy-birthday-113002.mp3"></audio>
+  
 
   <!-- Container for Screens -->
   <main class="w-full max-w-sm z-10 relative">
@@ -390,6 +391,12 @@
 
     // Navigation flow
     function goTo(screenId) {
+        if (bgMusic.paused) {
+    bgMusic.play().then(() => {
+      document.getElementById('sound-icon').textContent = '🔊';
+    }).catch(() => {});
+        }
+      
       document.querySelectorAll('.retro-window').forEach(win => win.classList.add('hidden'));
       document.getElementById(screenId).classList.remove('hidden');
 
